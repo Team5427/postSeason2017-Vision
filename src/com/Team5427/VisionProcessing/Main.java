@@ -13,6 +13,12 @@ import com.Team5427.res.Log;
 import edu.wpi.first.wpilibj.networktables.*;
 
 public class Main {
+	
+	/*This is the class that initializes the VisionFrame and GraphicsPanel 
+	 * AND serves as the computer-side connection (Server) to the Robot to 
+	 * provide robot basic info about whether robot is to right, left center, too 
+	 * close or too far, 
+	*/
 
 	/**
 	 * Maximum ratio of contours to be selected
@@ -107,8 +113,8 @@ public class Main {
 
 		setValues();
 
-		Server.addInterpreter(new SteamworkInterpreter());
-		Server.start();
+		//Server.addInterpreter(new SteamworkInterpreter());
+		//Server.start();
 
 		// Starts the ByteSender class. Set BYTE_SENDER_THREAD_ENABLE in com.Team5427.res.Config to enable/disable
 //		Thread byteSender = new Thread(new ByteSender());
@@ -784,10 +790,10 @@ public class Main {
 
 		if (Server.isConnected() && lastSendTime + 100000 < System.nanoTime()) {
 			try {
-				byte[] dictionary = new byte[]{ByteDictionary.TARGET_DATA};
+			//	byte[] dictionary = new byte[]{ByteDictionary.TARGET_DATA};
 				byte[] horiz = Interpreter.doubleToBytes(topTape.getHorizontalAngle());
 				byte[] targetdist = Interpreter.doubleToBytes(topTape.getTargetDistance());
-				Server.send(Interpreter.merge(dictionary, horiz, targetdist));
+				Server.send(Interpreter.merge( horiz, targetdist));
 
 				System.out.println("Send");
 
