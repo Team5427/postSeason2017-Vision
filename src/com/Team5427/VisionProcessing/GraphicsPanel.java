@@ -1,6 +1,6 @@
 package com.Team5427.VisionProcessing;
 
-import com.Team5427.Networking.Server;
+//import com.Team5427.Networking.Server;
 import com.Team5427.res.Config;
 import com.Team5427.res.Log;
 import com.github.sarxos.webcam.Webcam;
@@ -51,6 +51,8 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 
 	private static ArrayList<Color> colorList;
 	private double previousFrameTime = 0; // Previous System nanotime for last
+	private boolean needToMoveRight =false;
+	private boolean needToMoveLeft =false;
 
 	// frame
 	private BufferedImage panelImage;
@@ -356,6 +358,8 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 			//String horizontalAngle = String.format("%.2f", Math.toDegrees(curTarget.getCameraAngleY()));
 			String yPeakStr = String.format("%.2f", curTarget.getPeak().getY());
 			String motion = "Required Motion: ";
+			needToMoveRight = curTarget.needToMoveRight();
+			needToMoveLeft = curTarget.needToMoveLeft();
 			if(curTarget.needToMoveRight())
 				motion+= "Right. ";
 			if(curTarget.needToMoveLeft())
@@ -392,15 +396,15 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 		
 		// Paints data from the roborio if connection is established
 		bg.setFont(new Font("Arial", Font.BOLD, 12));
-		if (Server.isConnected()) {
-			bg.setColor(Color.GREEN);
-			bg.fillOval(489, 493, 10, 10);
-			bg.drawString("Connected to Roborio", 510, 503);
-		} else {
-			bg.setColor(Color.RED);
-			bg.fillOval(490, 493, 10, 10);
-			bg.drawString("No Connection", 522, 503);
-		}
+//		if (Server.isConnected()) {
+//			bg.setColor(Color.GREEN);
+//			bg.fillOval(489, 493, 10, 10);
+//			bg.drawString("Connected to Roborio", 510, 503);
+//		} else {
+//			bg.setColor(Color.RED);
+//			bg.fillOval(490, 493, 10, 10);
+//			bg.drawString("No Connection", 522, 503);
+//		}
 
 		// Paints game status
 		int statusX = 490;
@@ -556,5 +560,13 @@ public class GraphicsPanel extends JPanel implements KeyListener {
 		System.out.println("IP Address: " + address);
 		
 		return address;
+	}
+	public boolean getNeedToMoveRight()
+	{
+		return needToMoveRight;
+	}
+	public boolean getNeedToMoveLeft()
+	{
+		return needToMoveLeft;
 	}
 }

@@ -4,9 +4,9 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import com.Team5427.Networking.ByteDictionary;
+//import com.Team5427.Networking.ByteDictionary;
 import com.Team5427.Networking.Interpreter;
-import com.Team5427.Networking.Server;
+//import com.Team5427.Networking.Server;
 
 import com.Team5427.res.Config;
 import com.Team5427.res.Log;
@@ -155,6 +155,8 @@ public class Main {
 				//goals.clear();
 
 				// System.out.println((System.nanoTime() - startTime) / 1000000);
+				
+				//TODO STUFF 
 
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -788,20 +790,20 @@ public class Main {
 	//TODO fix this method
 	public static void sendData() {
 
-		if (Server.isConnected() && lastSendTime + 100000 < System.nanoTime()) {
-			try {
-			//	byte[] dictionary = new byte[]{ByteDictionary.TARGET_DATA};
-				byte[] horiz = Interpreter.doubleToBytes(topTape.getHorizontalAngle());
-				byte[] targetdist = Interpreter.doubleToBytes(topTape.getTargetDistance());
-				Server.send(Interpreter.merge( horiz, targetdist));
-
-				System.out.println("Send");
-
-				lastSendTime =  System.nanoTime();
-			} catch (IndexOutOfBoundsException e) {
-				e.printStackTrace();
-			}
-		}
+//		if (Server.isConnected() && lastSendTime + 100000 < System.nanoTime()) {
+//			try {
+//				//	byte[] dictionary = new byte[]{ByteDictionary.TARGET_DATA};
+//				byte[] horiz = Interpreter.doubleToBytes(topTape.getHorizontalAngle());
+//				byte[] targetdist = Interpreter.doubleToBytes(topTape.getTargetDistance());
+//				Server.send(Interpreter.merge( horiz, targetdist));
+//
+//				System.out.println("Send");
+//
+//				lastSendTime =  System.nanoTime();
+//			} catch (IndexOutOfBoundsException e) {
+//				e.printStackTrace();
+//			}
+//		}
 	}
 
 }
