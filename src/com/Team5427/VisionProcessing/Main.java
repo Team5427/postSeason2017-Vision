@@ -141,7 +141,7 @@ public class Main {
 				finalizeData();
 
 
-				sendData();//ADD NeworkTable 
+				sendData(table);//ADD NeworkTable 
 
 //				vf.getPanel().repaint();
 
@@ -233,6 +233,10 @@ public class Main {
     private static Thread repaintPanel = new Thread(new Runnable() {
         @Override
         public void run() {
+        	
+        	NetworkTable.setClientMode();
+    		NetworkTable.setIPAddress("10.54.27.15");
+    		NetworkTable table = NetworkTable.getTable("datatable");
 
             long lastPaintTime = System.nanoTime();
             double timeGap = 10e9 / Config.MAX_FPS;
@@ -803,7 +807,7 @@ public class Main {
 		buff [1] = centered;
 		buff [2] = needToMoveRight;
 		double d = PackingClass.bytesToDouble(buff);
-		table.putNumber("horizontalData", x);
+		table.putNumber("horizontalData", d);
 			
 		
 		
