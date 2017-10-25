@@ -141,7 +141,7 @@ public class Main {
 				finalizeData();
 
 
-				sendData();
+				sendData();//ADD NeworkTable 
 
 //				vf.getPanel().repaint();
 
@@ -786,10 +786,27 @@ public class Main {
 	private static long lastSendTime = System.nanoTime();
 	/**
 	 * Sends the appropriate goal data to the roborio
+	 * byte order in array:: needtoMoveLeft, centered, needToMoveRight
+	 * name of the double is called horizontalData
 	 */
 	//TODO fix this method
-	public static void sendData() {
-
+	public static void sendData(NetworkTable table) {
+		byte needToMoveLeft = 0, needToMoveRight = 0, centered = 0;
+		if(vf.getPanel().getNeedToMoveLeft())
+			needToMoveLeft = 1;
+		if(vf.getPanel().getNeedToMoveRight())
+			needToMoveRight = 1;
+		if(!vf.getPanel().getNeedToMoveLeft()&&!vf.getPanel().getNeedToMoveRight())
+			centered = 1;
+		byte [] buff = new byte[3];
+		buff [0] = needToMoveLeft;
+		buff [1] = centered;
+		buff [2] = needToMoveRight;
+		double d = PackingClass.bytesToDouble(buff);
+		table.putNumber("horizontalData", x);
+			
+		
+		
 //		if (Server.isConnected() && lastSendTime + 100000 < System.nanoTime()) {
 //			try {
 //				//	byte[] dictionary = new byte[]{ByteDictionary.TARGET_DATA};
