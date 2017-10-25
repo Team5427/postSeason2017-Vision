@@ -806,8 +806,11 @@ public class Main {
 		buff [0] = needToMoveLeft;
 		buff [1] = centered;
 		buff [2] = needToMoveRight;
+		for(int x = 0; x< buff.length; x++)
+			System.out.print("("+x+","+buff[x]+")");
 		double d = PackingClass.bytesToDouble(buff);
 		table.putNumber("horizontalData", d);
+		System.out.println("D:"+d);
 			
 		
 		
