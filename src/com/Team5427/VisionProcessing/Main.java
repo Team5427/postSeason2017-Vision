@@ -141,7 +141,7 @@ public class Main {
 				finalizeData();
 
 
-				sendData(table);//ADD NeworkTable 
+				sendData(table);
 
 //				vf.getPanel().repaint();
 
@@ -810,9 +810,7 @@ public class Main {
 			System.out.print("("+x+","+buff[x]+")");
 		double d = PackingClass.bytesToDouble(buff);
 		table.putNumber("horizontalData", d);
-		System.out.println("D:"+d);
-			
-		
+		System.out.println("D:"+d);	
 		
 //		if (Server.isConnected() && lastSendTime + 100000 < System.nanoTime()) {
 //			try {
