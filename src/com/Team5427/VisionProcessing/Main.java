@@ -802,6 +802,7 @@ public class Main {
 			needToMoveRight = 1;
 		if(!vf.getPanel().getNeedToMoveLeft()&&!vf.getPanel().getNeedToMoveRight())
 			centered = 1;
+		//converts data to ONE double  
 		byte [] buff = new byte[3];
 		buff [0] = needToMoveLeft;
 		buff [1] = centered;
@@ -809,7 +810,9 @@ public class Main {
 		for(int x = 0; x< buff.length; x++)
 			System.out.print("("+x+","+buff[x]+")");
 		double d = PackingClass.bytesToDouble(buff);
+		//puts data in table
 		table.putNumber("horizontalData", d);
+		//prints for self- checking 
 		System.out.println("D:"+d);	
 		
 //		if (Server.isConnected() && lastSendTime + 100000 < System.nanoTime()) {
